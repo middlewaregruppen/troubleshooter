@@ -1,7 +1,12 @@
-FROM alpine:3.7
+FROM ubuntu:bionic
 
-RUN apt-get curl
+RUN apt-get update
+RUN apt-get install -y curl gnupg software-properties-common
 
 # MSSQL Client.
-RUN curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add - && apt-add-repository https://packages.microsoft.com/ubuntu/18.04/prod && apt-get update && apt-get install mssql-cli && apt-get install -f
+RUN curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add - 
+RUN apt-add-repository https://packages.microsoft.com/ubuntu/18.04/prod
+RUN apt-get install -y mssql-cli
+RUN apt-get install -f -y
 
+CMD [ "sleep", "1000000000000" ]
